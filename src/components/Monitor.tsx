@@ -13,6 +13,8 @@ export default function Monitor() {
           <Terminal/>
         }
         <TaskBar setApp={setApp}/>
+        
+        
     </div>
   )
 }
