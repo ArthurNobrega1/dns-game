@@ -5,9 +5,18 @@ interface handlleSubmitDTO {
   currentPath: string
 }
 
+interface IPaths {
+  [x: string]: string[]
+}
+
+const paths: IPaths = {
+  'https://www.redesocial.com/': ['robots.txt', 'profile']
+}
+
 const commands = {
-  help: 'Lista todos os comandos',
-  clear: 'Limpa o terminal',
+  help: 'Lista todos os comandos [Ex: help]',
+  clear: 'Limpa o terminal [Ex: clear]',
+  dirb: 'Mapeia diretórios de uma url [Ex: dirb https://site.com/]'
 }
 
 const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
@@ -15,10 +24,10 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
     const currentInput = event.target as HTMLInputElement
 
     if (currentInput.value === 'clear') {
-      const divsToRemove = document.querySelectorAll("div.closed-div, div.help")
+      const divsToRemove = document.querySelectorAll("div.closed-div, div.help, div.paths")
 
       divsToRemove.forEach(div => {
-        if (div) div.remove()        
+        if (div) div.remove()
       })
 
       const currentDiv = currentInput.parentElement
@@ -30,20 +39,47 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
     if (currentInput.value === 'help') {
       const divHelp = document.createElement('div')
       divHelp.className = 'help'
+
       const title = document.createElement('p')
-      divHelp.appendChild(title)
       title.textContent = '|---LISTA DE COMANDOS---|'
+      divHelp.appendChild(title)
+
       Object.entries(commands).map(([key, value]) => {
         const paragraph = document.createElement('p')
         paragraph.textContent = `${key}: ${value}`
-
         divHelp.appendChild(paragraph)
+      })
+
+      const terminal = document.getElementById('terminal')
+      if (terminal) {
+        terminal.appendChild(divHelp)
+      }
+    }
+
+    if (currentInput.value.split(" ")[0] === 'dirb') {
+      const url = currentInput.value.split(" ")[1]
+      if (Object.keys(paths).includes(url)) {
+        const divPaths = document.createElement('div')
+        divPaths.className = 'paths'
+
+        const title = document.createElement('p')
+        title.textContent = '|---LISTA DE PATHS---|'
+        divPaths.appendChild(title)
+
+        const pathsUrl = paths[url]
+        pathsUrl.map((path) => {
+          const paragraph = document.createElement('p')
+          paragraph.textContent = `- ${path}`
+          divPaths.appendChild(paragraph)
+        })
+
         const terminal = document.getElementById('terminal')
         if (terminal) {
-          terminal.appendChild(divHelp)
+          terminal.appendChild(divPaths)
         }
-      })
+      }
     }
+
     const oldOpenInput = document.getElementById('open-input') as HTMLInputElement
     if (oldOpenInput) {
       oldOpenInput.id = ''
