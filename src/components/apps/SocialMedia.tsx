@@ -1,12 +1,14 @@
+import { useState } from "react";
 import ScreenSocialMedia from "../ScreenSocialMedia";
 import SearchBar from "../SearchBar";
-
+import ErroMensagem from "../ErroMensage";
 
 export default function SocialMedia() {
+  const [contentScreen, setContentScreen] = useState(<ErroMensagem />)
   return (
     <>
-        <SearchBar/>
-        <ScreenSocialMedia/>
+        <SearchBar setContentScreen={setContentScreen}/>
+        <ScreenSocialMedia contentScreen={contentScreen}/>
     </>
   )
 }

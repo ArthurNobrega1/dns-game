@@ -1,9 +1,11 @@
-import ErroMensagem from "./ErroMensage"
+interface Props {
+    contentScreen: JSX.Element
+}
 
-export default function ScreenSocialMedia() {
+export default function ScreenSocialMedia({ contentScreen }: Props) {
     return (
         <div className='flex-1 bg-[#495df8]'>
-            <ErroMensagem/>
+            {contentScreen}
         </div>
     )
 }

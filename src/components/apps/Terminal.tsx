@@ -10,7 +10,7 @@ interface IPaths {
 }
 
 const paths: IPaths = {
-  'https://www.redesocial.com/': ['robots.txt', 'profile']
+  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home']
 }
 
 const commands = {
