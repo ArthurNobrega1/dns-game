@@ -122,7 +122,7 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
 export default function Terminal() {
   const [currentPath, setCurrentPath] = useState('$')
   return (
-    <div id='terminal' className='font-mono bg-black flex-1 text-neutral-50 pl-3 py-3 overflow-y-scroll no-scrollbar'>
+    <div id='terminal' className='font-mono bg-black flex-1 text-neutral-50 pl-3 max-md:pl-1 py-3 overflow-y-scroll no-scrollbar text-sm max-md:text-[0.4rem]'>
       <div className='flex'>
         <p>user@root: {currentPath}</p>
         <input
