@@ -67,7 +67,7 @@ export default function SearchBar() {
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             placeholder="Digite o caminho..."
-                            className="flex-1 bg-transparent outline-none  text-stone-400"
+                            className="flex-1 bg-transparent outline-none   text-stone-400"
                         />
                     </form>
                 </div>

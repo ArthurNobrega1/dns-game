@@ -1,14 +1,32 @@
-import { useState } from "react";
-import ScreenSocialMedia from "../ScreenSocialMedia";
-import SearchBar from "../SearchBar";
-import ErroMensagem from "../ErroMensage";
 
-export default function SocialMedia() {
-  const [contentScreen, setContentScreen] = useState(<ErroMensagem />)
-  return (
-    <>
-        <SearchBar setContentScreen={setContentScreen}/>
-        <ScreenSocialMedia contentScreen={contentScreen}/>
-    </>
-  )
+import React from "react";
+import ErroMensagem from "../ErroMensage";
+import SearchBar from "../SearchBar";
+
+
+
+interface ScreenSocialMediaProps {
+
+  contentScreen: JSX.Element;
+
 }
+
+
+
+const ScreenSocialMedia: React.FC<ScreenSocialMediaProps> = ({ contentScreen }) => {
+
+  return (
+
+    <div>
+      <SearchBar/>
+      <ErroMensagem />
+
+    </div>
+
+  );
+
+};
+
+
+
+export default ScreenSocialMedia;
