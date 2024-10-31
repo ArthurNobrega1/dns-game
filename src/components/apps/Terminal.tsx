@@ -14,9 +14,18 @@ const paths: IPaths = {
 }
 
 const commands = {
-  help: 'Lista todos os comandos [Ex: help]',
-  clear: 'Limpa o terminal [Ex: clear]',
-  dirb: 'Mapeia diretórios de uma url [Ex: dirb https://site.com/]'
+
+  help: 'Lista todos os comandos',
+  clear: 'Limpa o terminal',
+  ls: 'Lista de diretorios',
+  cd: 'Navegar por diretorios'
+}
+
+const fileSystem: { [key: string]: string[] } = {
+  "$": ["documentos", "downloads", "músicas"],
+  "$documentos": ["arquivo1.txt", "arquivo2.txt"],
+  "$downloads": [],
+  "$músicas": []
 }
 
 const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
@@ -33,6 +42,20 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
       const currentDiv = currentInput.parentElement
       if (currentDiv) {
         currentDiv.remove()
+      }
+    }
+
+    if (currentInput.value === 'ls') {
+      const files = fileSystem[currentPath] || []
+      const output = files.length > 0 ? files.join(" ") : "Diretorio vazio"
+
+      const div = document.createElement("div")
+      div.textContent = output
+      div.className = "ls-output"
+
+      const terminal = document.getElementById("terminal")
+      if(terminal) {
+        terminal.appendChild(div)
       }
     }
 
