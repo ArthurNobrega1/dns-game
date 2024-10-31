@@ -4,7 +4,8 @@ import { VscChromeRestore } from "react-icons/vsc";
 import { GrAdd } from "react-icons/gr";
 import ErroMensagem from "./socialMediaScreens/ErroMensage";
 import RobotsTxt from "./socialMediaScreens/RobotsTxt";
-
+import Erro404 from "./socialMediaScreens/Erro404";
+import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
 }
@@ -13,14 +14,17 @@ export default function SearchBar({ setContentScreen }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
+            setContentScreen(<LoadingIcon />)
+            setTimeout(() => {
             const path = event.target as HTMLInputElement
             if (path.value === '' || path.value === 'home' || path.value === 'home/') {
                 setContentScreen(<ErroMensagem />)
             } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
                 setContentScreen(<RobotsTxt />)
             } else {
-                setContentScreen(<p>Teste</p>)
+                setContentScreen(<Erro404 />)
             }
+        }, 600)
         }
     }
 
