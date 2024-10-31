@@ -1,10 +1,5 @@
 import { useState } from "react"
 
-interface handlleSubmitDTO {
-  event: React.KeyboardEvent<HTMLInputElement>,
-  currentPath: string
-}
-
 interface IPaths {
   [x: string]: string[]
 }
@@ -14,52 +9,56 @@ const paths: IPaths = {
 }
 
 const commands = {
-
-  help: 'Lista todos os comandos',
-  clear: 'Limpa o terminal',
-  ls: 'Lista de diretorios',
-  cd: 'Navegar por diretorios'
+  help: 'Lista todos os comandos [Ex: help]',
+  clear: 'Limpa o terminal [Ex: clear]',
+  dirb: 'Mapeia diretórios de uma url [Ex: dirb https://site.com/]',
+  ls: 'Lista de diretorios [Ex: ls]',
+  cd: 'Navegar por diretorios [Ex: cd pasta]'
 }
-
 const fileSystem: { [key: string]: string[] } = {
-  "$": ["documentos", "downloads", "músicas"],
-  "$documentos": ["arquivo1.txt", "arquivo2.txt"],
-  "$downloads": [],
-  "$músicas": []
+  'root': ['dont-open']
 }
 
-const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
-  if (event.key === 'Enter') {
-    const currentInput = event.target as HTMLInputElement
+export default function Terminal() {
+  const [pathsTerminal, setPathsTerminal] = useState<string[]>(['root'])
+  const [input, setInput] = useState('')
 
+  const handleCommand = (currentInput: HTMLInputElement) => {
     if (currentInput.value === 'clear') {
-      const divsToRemove = document.querySelectorAll("div.closed-div, div.help, div.paths")
-
-      divsToRemove.forEach(div => {
-        if (div) div.remove()
-      })
-
-      const currentDiv = currentInput.parentElement
-      if (currentDiv) {
-        currentDiv.remove()
-      }
+      const divToRemove = document.getElementById("conteudo") as HTMLDivElement
+      divToRemove.innerHTML = ''
+      return undefined
     }
 
-    if (currentInput.value === 'ls') {
-      const files = fileSystem[currentPath] || []
-      const output = files.length > 0 ? files.join(" ") : "Diretorio vazio"
-
+    else if (currentInput.value === 'ls') {
+      const currentPath = pathsTerminal[pathsTerminal.length - 1]
+      const filesLs = currentPath.includes('dont-open')
+        ? [`realy-${currentPath}`, '..']
+        : fileSystem[currentPath] || []
+      const output = filesLs.length > 0 ? filesLs.join(" ") : "Diretorio vazio"
       const div = document.createElement("div")
       div.textContent = output
-      div.className = "ls-output"
-
-      const terminal = document.getElementById("terminal")
-      if(terminal) {
-        terminal.appendChild(div)
-      }
+      div.className = "ls"
+      return div
     }
 
-    if (currentInput.value === 'help') {
+    else if (currentInput.value.split(" ")[0] === 'cd') {
+      const currentPath = pathsTerminal[pathsTerminal.length - 1]
+      const filesCd = currentPath.includes('dont-open')
+        ? [`realy-${currentPath}`, '..']
+        : fileSystem[currentPath] || []
+      const cdValue = currentInput.value.split(" ")[1]
+      if (filesCd.includes(cdValue)) {
+        if (cdValue === '..' && currentPath !== 'root') {
+          setPathsTerminal((prev) => prev.slice(0, -1))
+        } else {
+          setPathsTerminal((prev) => [...prev, cdValue])
+        }
+      }
+      return undefined
+    }
+
+    else if (currentInput.value === 'help') {
       const divHelp = document.createElement('div')
       divHelp.className = 'help'
 
@@ -73,13 +72,10 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
         divHelp.appendChild(paragraph)
       })
 
-      const terminal = document.getElementById('terminal')
-      if (terminal) {
-        terminal.appendChild(divHelp)
-      }
+      return divHelp
     }
 
-    if (currentInput.value.split(" ")[0] === 'dirb') {
+    else if (currentInput.value.split(" ")[0] === 'dirb') {
       const url = currentInput.value.split(" ")[1]
       if (Object.keys(paths).includes(url)) {
         const divPaths = document.createElement('div')
@@ -96,68 +92,48 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
           divPaths.appendChild(paragraph)
         })
 
-        const terminal = document.getElementById('terminal')
-        if (terminal) {
-          terminal.appendChild(divPaths)
-        }
+        return divPaths
       }
     }
 
-    const oldOpenInput = document.getElementById('open-input') as HTMLInputElement
-    if (oldOpenInput) {
-      oldOpenInput.id = ''
-      oldOpenInput.classList.add('closed-input')
-      oldOpenInput.autofocus = false
-      oldOpenInput.disabled = true
-      oldOpenInput.onblur = null
-      oldOpenInput.parentElement?.classList.add('closed-div')
-    }
+    return undefined
+  }
 
-    const div = document.createElement('div')
-    div.className = 'flex'
-
-    const paragraph = document.createElement('p')
-    paragraph.textContent = `user@root: ${currentPath}`
-
-    const input = document.createElement('input')
-    input.className = 'bg-transparent flex-1 pl-3 outline-none'
-    input.onblur = e => {
-      const target = e.target as HTMLInputElement
-      return target.focus()
-    }
-    input.onkeydown = e => handlleSubmit({
-      event: e as unknown as React.KeyboardEvent<HTMLInputElement>,
-      currentPath
-    })
-    input.id = 'open-input'
-
-    div.appendChild(paragraph)
-    div.appendChild(input)
-
-    const terminal = document.getElementById('terminal')
-    if (terminal) {
-      terminal.appendChild(div)
-      input.focus()
+  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      const currentInput = event.target as HTMLInputElement
+      const conteudo = document.getElementById('conteudo')
+      if (currentInput.value !== 'clear') {
+        const oldInput = document.createElement('p')
+        oldInput.textContent = `user@root:/${pathsTerminal[pathsTerminal.length - 1] === 'root' ? '' : pathsTerminal[pathsTerminal.length - 1]}$  ${currentInput.value}`
+        if (conteudo && currentInput.value !== 'clear') {
+          conteudo.appendChild(oldInput)
+        }
+      }
+      const output = handleCommand(currentInput)
+      setInput('')
+      if (output) {
+        if (conteudo) {
+          conteudo.appendChild(output)
+        }
+      }
     }
   }
-}
-
-export default function Terminal() {
-  const [currentPath, setCurrentPath] = useState('$')
   return (
-    <div id='terminal' className='font-mono bg-black flex-1 text-neutral-50 pl-3 max-md:pl-1 py-3 overflow-y-scroll no-scrollbar text-sm max-md:text-[0.4rem]'>
+    <div className='font-mono bg-black flex-1 text-neutral-50 pl-3 max-md:pl-1 py-3 overflow-y-scroll no-scrollbar text-sm max-md:text-[0.4rem] max-md:leading-3'>
+      <main id="conteudo">
+      </main>
       <div className='flex'>
-        <p>user@root: {currentPath}</p>
+        <p>user@root:/{pathsTerminal[pathsTerminal.length - 1] === 'root' ? '' : pathsTerminal[pathsTerminal.length - 1]}$</p>
         <input
           type="text"
           id='open-input'
           className='bg-transparent flex-1 pl-3 outline-none'
           onBlur={e => e.target.focus()}
-          onKeyDown={e => handlleSubmit({
-            event: e,
-            currentPath
-          })}
+          onKeyDown={event => handleSubmit(event)}
           autoFocus={true}
+          onChange={e => setInput(e.target.value)}
+          value={input}
         />
       </div>
     </div>
