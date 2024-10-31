@@ -1,11 +1,32 @@
-import ScreenSocialMedia from "../ScreenSocialMedia";
+
+import React from "react";
+import ErroMensagem from "../ErroMensage";
 import SearchBar from "../SearchBar";
 
-export default function SocialMedia() {
-  return (
-    <>
-        <SearchBar/>
-        <ScreenSocialMedia/>
-    </>
-  )
+
+
+interface ScreenSocialMediaProps {
+
+  contentScreen: JSX.Element;
+
 }
+
+
+
+const ScreenSocialMedia: React.FC<ScreenSocialMediaProps> = ({ contentScreen }) => {
+
+  return (
+
+    <div>
+      <SearchBar/>
+      <ErroMensagem />
+
+    </div>
+
+  );
+
+};
+
+
+
+export default ScreenSocialMedia;

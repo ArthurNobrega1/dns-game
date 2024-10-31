@@ -5,7 +5,16 @@ interface handlleSubmitDTO {
   currentPath: string
 }
 
+interface IPaths {
+  [x: string]: string[]
+}
+
+const paths: IPaths = {
+  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home']
+}
+
 const commands = {
+
   help: 'Lista todos os comandos',
   clear: 'Limpa o terminal',
   ls: 'Lista de diretorios',
@@ -24,10 +33,10 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
     const currentInput = event.target as HTMLInputElement
 
     if (currentInput.value === 'clear') {
-      const divsToRemove = document.querySelectorAll("div.closed-div, div.help")
+      const divsToRemove = document.querySelectorAll("div.closed-div, div.help, div.paths")
 
       divsToRemove.forEach(div => {
-        if (div) div.remove()        
+        if (div) div.remove()
       })
 
       const currentDiv = currentInput.parentElement
@@ -53,20 +62,47 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
     if (currentInput.value === 'help') {
       const divHelp = document.createElement('div')
       divHelp.className = 'help'
+
       const title = document.createElement('p')
-      divHelp.appendChild(title)
       title.textContent = '|---LISTA DE COMANDOS---|'
+      divHelp.appendChild(title)
+
       Object.entries(commands).map(([key, value]) => {
         const paragraph = document.createElement('p')
         paragraph.textContent = `${key}: ${value}`
-
         divHelp.appendChild(paragraph)
+      })
+
+      const terminal = document.getElementById('terminal')
+      if (terminal) {
+        terminal.appendChild(divHelp)
+      }
+    }
+
+    if (currentInput.value.split(" ")[0] === 'dirb') {
+      const url = currentInput.value.split(" ")[1]
+      if (Object.keys(paths).includes(url)) {
+        const divPaths = document.createElement('div')
+        divPaths.className = 'paths'
+
+        const title = document.createElement('p')
+        title.textContent = '|---LISTA DE PATHS---|'
+        divPaths.appendChild(title)
+
+        const pathsUrl = paths[url]
+        pathsUrl.map((path) => {
+          const paragraph = document.createElement('p')
+          paragraph.textContent = `- ${path}`
+          divPaths.appendChild(paragraph)
+        })
+
         const terminal = document.getElementById('terminal')
         if (terminal) {
-          terminal.appendChild(divHelp)
+          terminal.appendChild(divPaths)
         }
-      })
+      }
     }
+
     const oldOpenInput = document.getElementById('open-input') as HTMLInputElement
     if (oldOpenInput) {
       oldOpenInput.id = ''
@@ -109,7 +145,7 @@ const handlleSubmit = ({ event, currentPath }: handlleSubmitDTO) => {
 export default function Terminal() {
   const [currentPath, setCurrentPath] = useState('$')
   return (
-    <div id='terminal' className='font-mono bg-black flex-1 text-neutral-50 pl-3 py-3 overflow-y-scroll no-scrollbar'>
+    <div id='terminal' className='font-mono bg-black flex-1 text-neutral-50 pl-3 max-md:pl-1 py-3 overflow-y-scroll no-scrollbar text-sm max-md:text-[0.4rem]'>
       <div className='flex'>
         <p>user@root: {currentPath}</p>
         <input

@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import SocialMedia from './apps/SocialMedia'
 import TaskBar from './TaskBar'
@@ -13,6 +14,8 @@ export default function Monitor() {
           <Terminal/>
         }
         <TaskBar setApp={setApp}/>
+        
+        
     </div>
   )
 }
