@@ -1,6 +1,7 @@
 import { Toaster } from "react-hot-toast"
 import Computer from "./components/Computer"
 
+
 function App() {
 
   return (
