@@ -4,6 +4,7 @@ import { VscChromeRestore } from "react-icons/vsc";
 import { GrAdd } from "react-icons/gr";
 import ErroMensagem from "./socialMediaScreens/ErroMensage";
 import RobotsTxt from "./socialMediaScreens/RobotsTxt";
+import Profile from "./socialMediaScreens/Profile"
 import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
@@ -23,6 +24,8 @@ export default function SearchBar({ setContentScreen }: Props) {
                 setContentScreen(<ErroMensagem />)
             } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
                 setContentScreen(<RobotsTxt />)
+            } else if (path.value === 'profile' || path.value === 'profile/') {
+                setContentScreen(<Profile />)
             } else if (path.value === 'admin' || path.value === 'admin/') {
                 setContentScreen(<Login setContentScreen={setContentScreen} />)
             } else {
@@ -60,7 +63,7 @@ export default function SearchBar({ setContentScreen }: Props) {
 
             </div>
             <div className="flex items-center h-4/6 bg-[#353535] text-stone-50 px-3 py-2 max-md:py-1 max-lg:text-[.6rem] max-md:text-[0.4rem]">
-                <div className="flex w-full h-5/6 items-center bg-[#202020] rounded-3xl px-3 border-2 border-transparent hover:bg-[#262626] focus-within:border-blue-500">
+                <div className="flex w-full h-6/6 items-center bg-[#202020] rounded-3xl px-3 border-2 border-transparent hover:bg-[#262626] focus-within:border-blue-500">
                     <p className="text-stone-400 mr-1">{url}</p>
                     <input
                         type="text"
