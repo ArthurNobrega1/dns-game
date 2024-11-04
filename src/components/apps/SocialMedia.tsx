@@ -7,8 +7,8 @@ export default function SocialMedia() {
   const [contentScreen, setContentScreen] = useState(<ErroMensagem />)
   return (
     <>
-        <SearchBar setContentScreen={setContentScreen}/>
-        <ScreenSocialMedia contentScreen={contentScreen}/>
+      <SearchBar setContentScreen={setContentScreen} />
+      <ScreenSocialMedia contentScreen={contentScreen} />
     </>
   )
 }
