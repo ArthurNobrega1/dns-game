@@ -4,6 +4,7 @@ import { VscChromeRestore } from "react-icons/vsc";
 import { GrAdd } from "react-icons/gr";
 import ErroMensagem from "./socialMediaScreens/ErroMensage";
 import RobotsTxt from "./socialMediaScreens/RobotsTxt";
+import Login from "./socialMediaScreens/Login";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -18,6 +19,8 @@ export default function SearchBar({ setContentScreen }: Props) {
                 setContentScreen(<ErroMensagem />)
             } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
                 setContentScreen(<RobotsTxt />)
+            } else if (path.value === 'admin' || path.value === 'admin/') {
+                setContentScreen(<Login setContentScreen={setContentScreen} />)
             } else {
                 setContentScreen(<p>Teste</p>)
             }
@@ -29,7 +32,7 @@ export default function SearchBar({ setContentScreen }: Props) {
             <div className="flex relative items-center h-2/6 bg-[#202020] text-stone-50 pl-3">
                 <div className="flex items-center bg-[#353535] w-[20%] max-md:w-[35%] h-[100%] rounded-tl-lg max-md:rounded-tl-md rounded-tr-lg max-md:rounded-tr-md rounded-br-[-25px]">
                     <img
-                        src="/image/images-removebg-preview.png"
+                        src="/image/logo.png"
                         alt="Logo da Rede Social"
                         className="w-[6%] mx-3 max-md:mr-1"
                     />
