@@ -21,7 +21,7 @@ export default function SearchBar({ setContentScreen }: Props) {
                 setContentScreen(<RobotsTxt />)
             } else if (path.value === 'profile' || path.value === 'profile/') {
                 setContentScreen(<Profile />)
-                } else {
+            } else {
                 setContentScreen(<p>Teste</p>)
             }
         }
