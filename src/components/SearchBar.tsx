@@ -5,6 +5,9 @@ import { GrAdd } from "react-icons/gr";
 import ErroMensagem from "./socialMediaScreens/ErroMensage";
 import RobotsTxt from "./socialMediaScreens/RobotsTxt";
 import Profile from "./socialMediaScreens/Profile"
+import Erro404 from "./socialMediaScreens/Erro404";
+import LoadingIcon from "./socialMediaScreens/LoadingIcon";
+import Login from "./socialMediaScreens/Login";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -14,6 +17,8 @@ export default function SearchBar({ setContentScreen }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
+            setContentScreen(<LoadingIcon />)
+            setTimeout(() => {
             const path = event.target as HTMLInputElement
             if (path.value === '' || path.value === 'home' || path.value === 'home/') {
                 setContentScreen(<ErroMensagem />)
@@ -21,9 +26,12 @@ export default function SearchBar({ setContentScreen }: Props) {
                 setContentScreen(<RobotsTxt />)
             } else if (path.value === 'profile' || path.value === 'profile/') {
                 setContentScreen(<Profile />)
+            } else if (path.value === 'admin' || path.value === 'admin/') {
+                setContentScreen(<Login setContentScreen={setContentScreen} />)
             } else {
-                setContentScreen(<p>Teste</p>)
+                setContentScreen(<Erro404 />)
             }
+        }, 600)
         }
     }
 
@@ -32,7 +40,7 @@ export default function SearchBar({ setContentScreen }: Props) {
             <div className="flex relative items-center h-2/6 bg-[#202020] text-stone-50 pl-3">
                 <div className="flex items-center bg-[#353535] w-[20%] max-md:w-[35%] h-[100%] rounded-tl-lg max-md:rounded-tl-md rounded-tr-lg max-md:rounded-tr-md rounded-br-[-25px]">
                     <img
-                        src="/image/images-removebg-preview.png"
+                        src="/image/logo.png"
                         alt="Logo da Rede Social"
                         className="w-[6%] mx-3 max-md:mr-1"
                     />
