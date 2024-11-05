@@ -10,9 +10,9 @@ interface Props {
 export default function SocialMedia({ setDisplayFirstHash }: Props) {
   const [contentScreen, setContentScreen] = useState(<ErroMensagem />)
   return (
-    <>
-      <SearchBar setDisplayFirstHash={setDisplayFirstHash} setContentScreen={setContentScreen} />
-      <ScreenSocialMedia contentScreen={contentScreen} />
+    < >
+        <SearchBar setContentScreen={setContentScreen}/>
+        <ScreenSocialMedia contentScreen={contentScreen}/>
     </>
   )
 }
