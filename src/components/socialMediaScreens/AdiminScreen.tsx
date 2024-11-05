@@ -13,7 +13,7 @@ import Reclamações from './AdmScreens/Reclamações';
 const AdminScreen: React.FC = () => {
     const [activeContent, setActiveContent] = useState<string>(''); // Estado para controlar o conteúdo ativo
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    
+
 
     const renderContent = () => {
         switch (activeContent) {
@@ -29,37 +29,37 @@ const AdminScreen: React.FC = () => {
                 return <DefaultScreen />;
         }
     };
-    
+
 
     return (
         <div className='flex-1 overflow-hidden '>
             {/* header */}
             <div className="w-full bg-blue-950 flex p-1 space-x-4 justify-end max-md:w-full h-full">
-  {/* Ícone Home */}
-  <IoHome 
-    className="w-6 h-6 text-gray-50 cursor-pointer hover:text-zinc-500 max-md:w-5 max-md:h-5" 
-    onClick={() => setActiveContent('default')} 
-  />
+                {/* Ícone Home */}
+                <IoHome
+                    className="w-6 h-6 text-gray-50 cursor-pointer hover:text-zinc-500 max-md:w-5 max-md:h-5"
+                    onClick={() => setActiveContent('default')}
+                />
 
-  {/* Container de Conta */}
-  <div className="bg-gray-700 rounded-3xl w-[20%] h-[3%] flex justify-center items-center space-x-2 mx-3 max-md:mr-1 max-md:w-[50%]">
-  <VscAccount className="text-gray-50 w-5 h-5 max-md:w-4 max-md:h-4" />
-  <p className="text-gray-50 truncate max-w-[100px] max-md:max-w-[50px]">Henrique@gmail.com</p>
-</div>
+                {/* Container de Conta */}
+                <div className="bg-gray-700 rounded-3xl w-[20%] h-[3%] flex justify-center items-center space-x-2 mx-3 max-md:mr-1 max-md:w-[50%]">
+                    <VscAccount className="text-gray-50 w-5 h-5 max-md:w-4 max-md:h-4" />
+                    <p className="text-gray-50 truncate max-w-[100px] max-md:max-w-[50px]">Henrique@gmail.com</p>
+                </div>
 
-  {/* Botão de Sair */}
-  <button className="text-gray-50 flex items-center space-x-1 justify-center max-md:space-x-0.5">
-    <SlLogin className="w-5 h-5 text-red-700 max-md:w-4 max-md:h-4" />
-    <span className="max-md:hidden" >Sair</span>
-  </button>
-</div>
+                {/* Botão de Sair */}
+                <button className="text-gray-50 flex items-center space-x-1 justify-center max-md:space-x-0.5">
+                    <SlLogin className="w-5 h-5 text-red-700 max-md:w-4 max-md:h-4" />
+                    <span className="max-md:hidden" >Sair</span>
+                </button>
+            </div>
 
 
             {/* main */}
-          
 
 
- 
+
+
             <div className="flex overflow-y-auto w-full">
                 {/* Sidebar */}
                 <div className={`bg-blue-800 flex flex-col transition-all duration-300 h-auto ${isSidebarOpen ? 'w-50' : 'w-20'}`}>
@@ -106,7 +106,7 @@ const AdminScreen: React.FC = () => {
                     {renderContent()}
                 </div>
             </div>
-</div>
+        </div>
     );
 };
 

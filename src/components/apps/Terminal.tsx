@@ -5,7 +5,7 @@ interface IPaths {
 }
 
 const paths: IPaths = {
-  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home']
+  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home', 'chat/23781829']
 }
 
 const commands = {

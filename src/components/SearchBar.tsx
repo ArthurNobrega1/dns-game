@@ -8,6 +8,7 @@ import Profile from "./socialMediaScreens/Profile"
 import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
+import Chat from "./socialMediaScreens/Chat";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -29,6 +30,8 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Pro
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
                 } else if (path.value === 'admin' || path.value === 'admin/') {
                     setContentScreen(<Login setContentScreen={setContentScreen} />)
+                } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
+                    setContentScreen(<Chat />)
                 } else {
                     setContentScreen(<Erro404 />)
                 }

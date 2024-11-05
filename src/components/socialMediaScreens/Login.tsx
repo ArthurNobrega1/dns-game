@@ -17,8 +17,8 @@ export default function Login({ setContentScreen }: Props) {
         const user = document.getElementById('user') as HTMLInputElement
         const passoword = document.getElementById('password') as HTMLInputElement
 
-        if (user.value === 'admin' && passoword.value === 'admin') {
-            setContentScreen(<AdminScreen/>)
+        if (user.value === 'chefe@redesocial.com' && passoword.value === 'senhaultradificil') {
+            setContentScreen(<AdminScreen />)
         }
     }
 

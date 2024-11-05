@@ -9,7 +9,7 @@ interface Props {
 export default function Profile({ setDisplayFirstHash }: Props) {
     return (
         <div className="flex flex-col items-center justify-center relative w-full h-full">
-            <div className="flex items-center w-full absolute top-2 left-2 max-md:top-0 max-md:left-">
+            <div className="flex items-center w-full absolute top-2 left-2 max-md:top-0 max-md:left-0">
                 <div className="py-2 px-4 max-md:py-1 max-md:px-2 bg-[#a6aff2] rounded-full border-2 border-white flex items-center justify-center mr-3 max-md:mr-1">
                     <span className="text-gray-600 max-md:text-[.5rem]">U</span>
                 </div>
