@@ -4,23 +4,35 @@ import { VscChromeRestore } from "react-icons/vsc";
 import { GrAdd } from "react-icons/gr";
 import ErroMensagem from "./socialMediaScreens/ErroMensage";
 import RobotsTxt from "./socialMediaScreens/RobotsTxt";
+import Profile from "./socialMediaScreens/Profile"
+import Erro404 from "./socialMediaScreens/Erro404";
+import LoadingIcon from "./socialMediaScreens/LoadingIcon";
+import Login from "./socialMediaScreens/Login";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
+    setDisplayFirstHash: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function SearchBar({ setContentScreen }: Props) {
+export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            const path = event.target as HTMLInputElement
-            if (path.value === '' || path.value === 'home' || path.value === 'home/') {
-                setContentScreen(<ErroMensagem />)
-            } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
-                setContentScreen(<RobotsTxt />)
-            } else {
-                setContentScreen(<p>Teste</p>)
-            }
+            setContentScreen(<LoadingIcon />)
+            setTimeout(() => {
+                const path = event.target as HTMLInputElement
+                if (path.value === '' || path.value === 'home' || path.value === 'home/') {
+                    setContentScreen(<ErroMensagem />)
+                } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
+                    setContentScreen(<RobotsTxt />)
+                } else if (path.value === 'profile' || path.value === 'profile/') {
+                    setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
+                } else if (path.value === 'admin' || path.value === 'admin/') {
+                    setContentScreen(<Login setContentScreen={setContentScreen} />)
+                } else {
+                    setContentScreen(<Erro404 />)
+                }
+            }, 600)
         }
     }
 
@@ -29,7 +41,7 @@ export default function SearchBar({ setContentScreen }: Props) {
             <div className="flex relative items-center h-2/6 bg-[#202020] text-stone-50 pl-3">
                 <div className="flex items-center bg-[#353535] w-[20%] max-md:w-[35%] h-[100%] rounded-tl-lg max-md:rounded-tl-md rounded-tr-lg max-md:rounded-tr-md rounded-br-[-25px]">
                     <img
-                        src="/image/images-removebg-preview.png"
+                        src="/image/logo.png"
                         alt="Logo da Rede Social"
                         className="w-[6%] mx-3 max-md:mr-1"
                     />
@@ -52,7 +64,7 @@ export default function SearchBar({ setContentScreen }: Props) {
 
             </div>
             <div className="flex items-center h-4/6 bg-[#353535] text-stone-50 px-3 py-2 max-md:py-1 max-lg:text-[.6rem] max-md:text-[0.4rem]">
-                <div className="flex w-full h-5/6 items-center bg-[#202020] rounded-3xl px-3 border-2 border-transparent hover:bg-[#262626] focus-within:border-blue-500">
+                <div className="flex w-full h-6/6 items-center bg-[#202020] rounded-3xl px-3 border-2 border-transparent hover:bg-[#262626] focus-within:border-blue-500">
                     <p className="text-stone-400 mr-1">{url}</p>
                     <input
                         type="text"
