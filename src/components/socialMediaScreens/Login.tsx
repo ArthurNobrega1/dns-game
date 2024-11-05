@@ -1,5 +1,6 @@
 import Button from "../Button";
 import Input from "../Input";
+import AdminScreen from "./AdiminScreen";
 
 const inputs = [{ id: 'user', placeholder: 'Usuário' }, { id: 'password', placeholder: 'Senha', type: 'password' }]
 
@@ -17,7 +18,7 @@ export default function Login({ setContentScreen }: Props) {
         const passoword = document.getElementById('password') as HTMLInputElement
 
         if (user.value === 'admin' && passoword.value === 'admin') {
-            setContentScreen(<p>Passou</p>)
+            setContentScreen(<AdminScreen/>)
         }
     }
 

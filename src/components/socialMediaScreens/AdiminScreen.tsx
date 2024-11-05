@@ -7,11 +7,13 @@ import { TbRouteSquare } from "react-icons/tb";
 import RouteManagement from "./AdmScreens/RoutesScreen";
 import { IoHome } from "react-icons/io5";
 import DefaultScreen from './AdmScreens/DefaultScreen';
-import ListaDeIP from '../socialMediaScreens/AdmScreens/ListaDeIP';
+import ListaDeIP from './AdmScreens/ListaDeIP';
+import Reclamações from './AdmScreens/Reclamações';
 
 const AdminScreen: React.FC = () => {
     const [activeContent, setActiveContent] = useState<string>(''); // Estado para controlar o conteúdo ativo
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
 
     const renderContent = () => {
         switch (activeContent) {
@@ -27,6 +29,7 @@ const AdminScreen: React.FC = () => {
                 return <DefaultScreen />;
         }
     };
+    
 
     return (
         <div className='flex-1 overflow-hidden '>
@@ -47,7 +50,7 @@ const AdminScreen: React.FC = () => {
   {/* Botão de Sair */}
   <button className="text-gray-50 flex items-center space-x-1 justify-center max-md:space-x-0.5">
     <SlLogin className="w-5 h-5 text-red-700 max-md:w-4 max-md:h-4" />
-    <span className="max-md:hidden">Sair</span>
+    <span className="max-md:hidden" >Sair</span>
   </button>
 </div>
 
