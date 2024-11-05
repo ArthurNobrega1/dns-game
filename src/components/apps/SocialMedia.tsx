@@ -6,7 +6,7 @@ import ErroMensagem from "../socialMediaScreens/ErroMensage";
 export default function SocialMedia() {
   const [contentScreen, setContentScreen] = useState(<ErroMensagem />)
   return (
-    <>
+    < >
         <SearchBar setContentScreen={setContentScreen}/>
         <ScreenSocialMedia contentScreen={contentScreen}/>
     </>
