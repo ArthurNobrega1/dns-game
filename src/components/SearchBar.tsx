@@ -11,27 +11,28 @@ import Login from "./socialMediaScreens/Login";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
+    setDisplayFirstHash: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function SearchBar({ setContentScreen }: Props) {
+export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             setContentScreen(<LoadingIcon />)
             setTimeout(() => {
-            const path = event.target as HTMLInputElement
-            if (path.value === '' || path.value === 'home' || path.value === 'home/') {
-                setContentScreen(<ErroMensagem />)
-            } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
-                setContentScreen(<RobotsTxt />)
-            } else if (path.value === 'profile' || path.value === 'profile/') {
-                setContentScreen(<Profile />)
-            } else if (path.value === 'admin' || path.value === 'admin/') {
-                setContentScreen(<Login setContentScreen={setContentScreen} />)
-            } else {
-                setContentScreen(<Erro404 />)
-            }
-        }, 600)
+                const path = event.target as HTMLInputElement
+                if (path.value === '' || path.value === 'home' || path.value === 'home/') {
+                    setContentScreen(<ErroMensagem />)
+                } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
+                    setContentScreen(<RobotsTxt />)
+                } else if (path.value === 'profile' || path.value === 'profile/') {
+                    setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
+                } else if (path.value === 'admin' || path.value === 'admin/') {
+                    setContentScreen(<Login setContentScreen={setContentScreen} />)
+                } else {
+                    setContentScreen(<Erro404 />)
+                }
+            }, 600)
         }
     }
 
