@@ -16,8 +16,6 @@ const AdminScreen: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [app, setApp] = useState('');
 
-
-
     const renderContent = () => {
         switch (activeContent) {
             case 'listaDeIP':
