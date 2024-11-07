@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function TaskBar({ setApp }: Props) {
-    const handlleChangeApp = (context: 'terminal' | 'socialMedia' | 'adimin') => {
+    const handlleChangeApp = (context: 'terminal' | 'socialMedia') => {
         setApp(context)
         if (context === 'terminal') showInfoToast('Escreva help para conhecer os comandos')
         else if (context === 'socialMedia') showInfoToast('Sabia que o DNS é como o catálogo telefônico da internet? Ele traduz nomes de domínio (como <strong>www.exemplo.com</strong>) em endereços IP que os servidores entendem. Se o DNS falhar, o site pode não ser encontrado! ')
