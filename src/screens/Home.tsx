@@ -1,4 +1,5 @@
 import ButtonHome from "../components/ButtonHome"
+import { showInfoToast } from "../utils/toast"
 
 interface Props {
     setScreen: React.Dispatch<React.SetStateAction<string>>
@@ -12,7 +13,7 @@ export default function Home({ setScreen }: Props) {
                 <p>O objetivo do jogo é encontrar as duas partes de uma chave hash para acessar uma página especial em uma rede social. Quando você conseguir juntar as partes e acessar essa página, o jogo será finalizado. Explore as páginas e use os comandos disponíveis para encontrar as chaves e alcançar o objetivo!</p>
             </div>
             <ButtonHome onClick={_ => setScreen('game')} name="Play" />
-            <ButtonHome name="Sobre" />
+            <ButtonHome name="Sobre" onClick={_=> showInfoToast('Bem-vindo ao DNS Simulator, um jogo educativo que transforma o complexo mundo dos servidores e da internet em uma experiência interativa e divertida! A cada desafio, você irá descobrir mais sobre como o DNS mantém a internet conectada, aprendendo sobre temas como IPs, domínios, e como os servidores resolvem endereços para carregar as páginas corretas.')} />
         </div>
     )
 }

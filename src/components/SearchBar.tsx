@@ -9,6 +9,8 @@ import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
 import Chat from "./socialMediaScreens/Chat";
+import { showErrorToast, showInfoToast } from "../utils/toast";
+
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -30,12 +32,15 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDis
                     setContentScreen(<RobotsTxt />)
                 } else if (path.value === 'profile' || path.value === 'profile/') {
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
+                    showInfoToast('Aqui você pode procurar o IP da página desejada e usá-lo para acessar a página diretamente')
                 } else if (path.value === 'admin' || path.value === 'admin/') {
                     setContentScreen(<Login setContentScreen={setContentScreen } setDisplaySecondHash={setDisplaySecondHash} />)
+                    showInfoToast('Busque por o hash do login e senha admin! Ps:Eles podem ser difíceis')
                 } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
                     setContentScreen(<Chat />)
                 } else {
                     setContentScreen(<Erro404 />)
+                    showErrorToast('A página ou recurso que você está tentando acessar não pode ser encontrado ou nunca existiu.')
                 }
             }, 600)
         }
