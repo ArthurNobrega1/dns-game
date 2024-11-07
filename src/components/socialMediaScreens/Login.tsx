@@ -6,9 +6,11 @@ const inputs = [{ id: 'user', placeholder: 'Usuário' }, { id: 'password', place
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
+    setDisplaySecondHash: React.Dispatch<React.SetStateAction<number>>;
+
 }
 
-export default function Login({ setContentScreen }: Props) {
+export default function Login({ setContentScreen,setDisplaySecondHash }: Props) {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>
     ) => {
@@ -18,7 +20,8 @@ export default function Login({ setContentScreen }: Props) {
         const passoword = document.getElementById('password') as HTMLInputElement
 
         if (user.value === 'chefe@redesocial.com' && passoword.value === 'senhaultradificil') {
-            setContentScreen(<AdminScreen />)
+            setContentScreen(<AdminScreen setDisplaySecondHash={setDisplaySecondHash} />)
+            
         }
     }
 

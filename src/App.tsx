@@ -17,7 +17,7 @@ function App() {
           <p style={{ opacity: displaySecondHash }} className="border-e border-t border-b rounded-e-3xl pr-2 py-1 ease-in-out duration-700">.939.459</p>
         </div>
       </div>
-      <Computer setDisplayFirstHash={setDisplayFirstHash}  />
+      <Computer setDisplayFirstHash={setDisplayFirstHash}  setDisplaySecondHash={setDisplaySecondHash} />
     </div>
   )
 }

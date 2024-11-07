@@ -11,7 +11,13 @@ import ListaDeIP from './AdmScreens/ListaDeIP';
 import Reclamações from './AdmScreens/Reclamações';
 import TaskTip from './TaskTip';
 
-const AdminScreen: React.FC = () => {
+interface Props {
+    setDisplaySecondHash: React.Dispatch<React.SetStateAction<number>>;
+
+}
+
+
+const AdminScreen: React.FC<Props> = ({ setDisplaySecondHash }) => {
     const [activeContent, setActiveContent] = useState<string>(''); // Estado para controlar o conteúdo ativo
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [app, setApp] = useState('');
@@ -19,7 +25,7 @@ const AdminScreen: React.FC = () => {
     const renderContent = () => {
         switch (activeContent) {
             case 'listaDeIP':
-                return <ListaDeIP />;
+                return <ListaDeIP setDisplaySecondHash={setDisplaySecondHash} />;
             case 'reclamacoes':
                 return <Reclamações />;
             case 'rotas':
