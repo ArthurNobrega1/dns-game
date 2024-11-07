@@ -13,9 +13,11 @@ import Chat from "./socialMediaScreens/Chat";
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
     setDisplayFirstHash: React.Dispatch<React.SetStateAction<number>>
+    setDisplaySecondHash: React.Dispatch<React.SetStateAction<number>>;
+
 }
 
-export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Props) {
+export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDisplaySecondHash }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
@@ -29,7 +31,7 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Pro
                 } else if (path.value === 'profile' || path.value === 'profile/') {
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
                 } else if (path.value === 'admin' || path.value === 'admin/') {
-                    setContentScreen(<Login setContentScreen={setContentScreen} />)
+                    setContentScreen(<Login setContentScreen={setContentScreen } setDisplaySecondHash={setDisplaySecondHash} />)
                 } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
                     setContentScreen(<Chat />)
                 } else {
