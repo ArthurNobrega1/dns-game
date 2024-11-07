@@ -20,12 +20,15 @@ const routesData = [
     IP: '140.014',
   },
 ];
+interface Props {
+    setDisplaySecondHash: React.Dispatch<React.SetStateAction<number>>;
 
-const ListaDeIP = () => {
+}
+
+const ListaDeIP : React.FC<Props> = ({ setDisplaySecondHash }) => {
   const handleIPClick = (ip: string) => {
     console.log(`IP clicked: ${ip}`);
-    // Adicione aqui a lógica que você deseja executar ao clicar no IP
-  };
+    setDisplaySecondHash(1)  };
 
   return (
     <div className='flex max-h-auto w-full'>
