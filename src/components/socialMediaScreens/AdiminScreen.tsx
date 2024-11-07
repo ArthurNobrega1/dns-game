@@ -9,12 +9,10 @@ import { IoHome } from "react-icons/io5";
 import DefaultScreen from './AdmScreens/DefaultScreen';
 import ListaDeIP from './AdmScreens/ListaDeIP';
 import Reclamações from './AdmScreens/Reclamações';
-import TaskBar from '../TaskBar';
 
 const AdminScreen: React.FC = () => {
     const [activeContent, setActiveContent] = useState<string>(''); // Estado para controlar o conteúdo ativo
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [app, setApp] = useState('');
 
     const renderContent = () => {
         switch (activeContent) {
@@ -31,10 +29,8 @@ const AdminScreen: React.FC = () => {
         }
     };
 
-
     return (
         <div className='flex-1 overflow-hidden '>
-            <TaskBar setApp={setApp} context="admin" />
             {/* header */}
             <div className="w-full bg-blue-950 flex p-1 space-x-4 justify-end max-md:w-full h-full">
                 {/* Ícone Home */}
@@ -56,11 +52,7 @@ const AdminScreen: React.FC = () => {
                 </button>
             </div>
 
-
             {/* main */}
-
-
-
 
             <div className="flex overflow-y-auto w-full">
                 {/* Sidebar */}

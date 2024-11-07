@@ -9,6 +9,7 @@ import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
 import Chat from "./socialMediaScreens/Chat";
+import { showInfoToast } from "../utils/toast";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -28,8 +29,10 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash }: Pro
                     setContentScreen(<RobotsTxt />)
                 } else if (path.value === 'profile' || path.value === 'profile/') {
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
+                    showInfoToast('Aqui você pode procurar o IP da página desejada pra usá-lo para acessar a página diretamente')
                 } else if (path.value === 'admin' || path.value === 'admin/') {
                     setContentScreen(<Login setContentScreen={setContentScreen} />)
+                    showInfoToast('Para testar, use as credenciais padrão. Nome de usuário: admin, Senha: 1234')
                 } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
                     setContentScreen(<Chat />)
                 } else {
