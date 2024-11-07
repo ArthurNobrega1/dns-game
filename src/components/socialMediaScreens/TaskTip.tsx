@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 interface Props {
   setApp: React.Dispatch<React.SetStateAction<string>>;
-  context: 'terminal' | 'socialMedia' | 'admin';
+  context: 'terminal' | 'profile' | 'admin';
 }
 
 const showInfoToast = (message: string, duration = 4000) => { // duração padrão de 4 segundos
