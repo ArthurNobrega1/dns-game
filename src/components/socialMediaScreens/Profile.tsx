@@ -16,7 +16,7 @@ export default function Profile({ setDisplayFirstHash }: Props) {
                 <div className="text-lg max-md:text-[.5rem] text-white font-bold">User3626783</div>
             </div>
 
-            <div className='grid grid-cols-3 max-md:grid-cols-2 items-center gap-6 overflow-scroll h-3/4 max-md:h-2/4 no-scrollbar'>
+            <div className='grid grid-cols-3 max-md:grid-cols-2 items-center gap-6 max-lg:gap-3 overflow-scroll h-3/4 max-md:h-2/4 no-scrollbar'>
                 {[...Array(11)].map((_, index) => {
                     if (index === 3) {
                         return <CrashedOfflineBlock key={index} setDisplayFirstHash={setDisplayFirstHash} />
