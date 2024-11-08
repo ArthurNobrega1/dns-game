@@ -9,6 +9,7 @@ import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
 import Chat from "./socialMediaScreens/Chat";
+import { tipChat, tipDNS, tipError404, tipError500, tipHome, tipLogin, tipProfile, tipRobotsTxt } from "../utils/tips";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -26,16 +27,28 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDis
                 const path = event.target as HTMLInputElement
                 if (path.value === '' || path.value === 'home' || path.value === 'home/') {
                     setContentScreen(<ErroMensagem />)
+                    tipHome()
+                    setTimeout(() =>{
+                       tipError500()
+                    },4300)
+                    setTimeout(() =>{
+                        tipDNS()
+                     },8100)
                 } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
                     setContentScreen(<RobotsTxt />)
+                    tipRobotsTxt()
                 } else if (path.value === 'profile' || path.value === 'profile/') {
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
+                    tipProfile()
                 } else if (path.value === 'admin' || path.value === 'admin/') {
                     setContentScreen(<Login setContentScreen={setContentScreen } setDisplaySecondHash={setDisplaySecondHash} />)
+                    tipLogin()
                 } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
                     setContentScreen(<Chat />)
+                    tipChat()
                 } else {
                     setContentScreen(<Erro404 />)
+                    tipError404()
                 }
             }, 600)
         }
