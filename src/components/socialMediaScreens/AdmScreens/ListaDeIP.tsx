@@ -1,17 +1,17 @@
 const routesData = [
   {
     route: '/profile',
-    status: 'Defeito',
+    status: 'defeito',
     IP: '142.250',
   },
   {
     route: '/admin',
-    status: 'Ativo',
+    status: 'ativo',
     IP: '939.459',
   },
   {
     route: '/home',
-    status: 'Bloqueado',
+    status: 'bloqueado',
     IP: '142.250',
   },
   {
@@ -51,7 +51,7 @@ const ListaDeIP: React.FC<Props> = ({ setDisplaySecondHash }) => {
               return (
                 <tr key={index} className='border-b border-gray-400 *:max-lg:text-[.5rem]'>
                   <td className='py-2 px-2 border-r border-gray-400'>{route.route}</td>
-                  <td className='py-2 px-2 border-r border-gray-400'>{route.status}</td>
+                  <td className={`py-2 px-2 border-r border-gray-400 ${index === randomIndex ? 'uppercase font-semibold' : 'capitalize'}`}>{route.status}</td>
                   <td
                     className={`py-2 px-2 border-r border-gray-400 ${index === randomIndex ? 'cursor-pointer' : ''}`}
                     onClick={index === randomIndex ? () => handleIPClick(route.IP) : undefined}

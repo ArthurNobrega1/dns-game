@@ -18,7 +18,7 @@ export default function Game({ setScreen }: Props) {
                 setScreen('home')
                 setDisplayFirstHash(0)
                 setDisplaySecondHash(0)
-            }, 3000)
+            }, 2000)
         }
     }, [displayFirstHash, displaySecondHash])
 
