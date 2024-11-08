@@ -28,12 +28,12 @@ const routesData = [
 const RouteManagement = () => {
   return (
     <div className='flex max-h-auto w-full'>
-      <div className='flex-1 p-2'>
-        <h2 className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full">Listagem de Rotas com Problemas</h2>
+      <div className='flex-1 p-2 max-lg:p-2'>
+        <h2 className="bg-purple-700 text-white text-center py-4 max-lg:py-1 font-bold text-lg w-full max-lg:text-[.5rem]">Listagem de Rotas com Problemas</h2>
         
         <table className='w-full bg-white border border-gray-400'>
           <thead>
-            <tr className='bg-gray-200 text-left border-b border-gray-400'>
+            <tr className='bg-gray-200 text-left border-b border-gray-400 *:max-lg:text-[.5rem]'>
               <th className='py-2 px-2 border-r border-gray-400'>Nome da Rota</th>
               <th className='py-2 px-2 border-r border-gray-400'>Status</th>
               <th className='py-2 px-2 border-r border-gray-400'>Último Acesso</th>
@@ -42,7 +42,7 @@ const RouteManagement = () => {
           </thead>
           <tbody>
             {routesData.map((route, index) => (
-              <tr key={index} className='border-b border-gray-400'>
+              <tr key={index} className='border-b border-gray-400 max-lg:text-[.5rem]'>
                 <td className='py-2 px-2 border-r border-gray-400'>{route.route}</td>
                 <td className='py-2 px-2 border-r border-gray-400'>{route.status}</td>
                 <td className='py-2 px-2 border-r border-gray-400'>{route.lastAccess}</td>
