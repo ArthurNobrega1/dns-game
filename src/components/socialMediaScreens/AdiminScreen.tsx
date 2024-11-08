@@ -39,22 +39,22 @@ const AdminScreen: React.FC<Props> = ({ setDisplaySecondHash }) => {
     return (
         <div className='flex-1 overflow-hidden '>
             {/* header */}
-            <div className="w-full bg-blue-950 flex p-1 space-x-4 justify-end max-md:w-full h-full">
+            <div className="w-full items-center bg-blue-950 flex p-1 space-x-4 justify-end max-md:w-full h-full">
                 {/* Ícone Home */}
                 <IoHome
-                    className="w-6 h-6 text-gray-50 cursor-pointer hover:text-zinc-500 max-md:w-5 max-md:h-5"
+                    className="h-6 text-gray-50 cursor-pointer hover:text-zinc-500 max-md:w-5 max-md:h-3"
                     onClick={() => setActiveContent('default')}
                 />
 
                 {/* Container de Conta */}
                 <div className="bg-gray-700 rounded-3xl w-[20%] h-[3%] flex justify-center items-center space-x-2 mx-3 max-md:mr-1 max-md:w-[50%]">
-                    <VscAccount className="text-gray-50 w-5 h-5 max-md:w-4 max-md:h-4" />
-                    <p className="text-gray-50 truncate max-w-[100px] max-md:max-w-[50px]">Henrique@gmail.com</p>
+                    <VscAccount className="text-gray-50 h-5 max-md:w-4 max-md:h-3" />
+                    <p className="text-gray-50 truncate max-w-[100px] max-lg:text-xs max-md:max-w-[50px]">Henrique@gmail.com</p>
                 </div>
 
                 {/* Botão de Sair */}
                 <button className="text-gray-50 flex items-center space-x-1 justify-center max-md:space-x-0.5">
-                    <SlLogin className="w-5 h-5 text-red-700 max-md:w-4 max-md:h-4" />
+                    <SlLogin className="h-5 text-red-700 max-md:w-4 max-md:h-3" />
                     <span className="max-md:hidden" >Sair</span>
                 </button>
             </div>
@@ -67,10 +67,10 @@ const AdminScreen: React.FC<Props> = ({ setDisplaySecondHash }) => {
 
             <div className="flex overflow-y-auto w-full">
                 {/* Sidebar */}
-                <div className={`bg-blue-800 flex flex-col transition-all duration-300 h-auto ${isSidebarOpen ? 'w-50' : 'w-20'}`}>
+                <div className={`bg-blue-800 flex flex-col transition-all duration-300 h-auto ${isSidebarOpen ? 'w-50 max-lg:w-20' : 'w-20 max-lg:w-10'}`}>
                     {/* Botão para Expandir/Reduzir a Sidebar sempre ativo */}
                     <button
-                        className="text-white p-2 focus:outline-none"
+                        className="text-white p-2 max-lg:p-1 focus:outline-none"
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     >
                         {isSidebarOpen ? '←' : '→'}
@@ -78,11 +78,11 @@ const AdminScreen: React.FC<Props> = ({ setDisplaySecondHash }) => {
 
                     {/* Informações do usuário */}
                     <div className="flex flex-col justify-center items-center border-b border-neutral-800 p-4">
-                        <VscAccount className="w-10 h-10 mt-2 text-white" />
+                        <VscAccount className="size-10 max-lg:size-5 mt-2 text-white" />
                         {isSidebarOpen && (
                             <>
-                                <h1 className="text-white mt-2 ">Henrique Machado</h1>
-                                <h5 className="text-gray-300">Matrícula: 122.89</h5>
+                                <h1 className="text-white mt-2 max-lg:text-[.5rem]">Henrique Machado</h1>
+                                <h5 className="text-gray-300 max-lg:text-[.5rem]">Matrícula: 122.89</h5>
                             </>
                         )}
                     </div>
@@ -95,11 +95,11 @@ const AdminScreen: React.FC<Props> = ({ setDisplaySecondHash }) => {
                                 className={`flex items-center border-b border-neutral-800 cursor-pointer p-3 transition-all duration-150 ${activeContent === option ? 'bg-slate-600' : 'hover:bg-slate-500'}`}
                                 onClick={() => setActiveContent(option)}
                             >
-                                {option === 'listaDeIP' && <FaList className="w-5 h-5 text-white mr-3" />}
-                                {option === 'reclamacoes' && <MdOutlineBugReport className="w-5 h-5 text-white mr-3" />}
-                                {option === 'rotas' && <TbRouteSquare className="w-5 h-5 text-white mr-3" />}
+                                {option === 'listaDeIP' && <FaList className="size-5 max-lg:size-3 text-white mr-3 max-lg:mr-1" />}
+                                {option === 'reclamacoes' && <MdOutlineBugReport className="size-5 max-lg:size-3 text-white mr-3 max-lg:mr-1" />}
+                                {option === 'rotas' && <TbRouteSquare className="size-5 max-lg:size-3 text-white mr-3 max-lg:mr-1" />}
                                 {isSidebarOpen && (
-                                    <h5 className="text-white capitalize">{option}</h5>
+                                    <h5 className="text-white capitalize max-lg:text-[.5rem]">{option}</h5>
                                 )}
                             </div>
                         ))}

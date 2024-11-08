@@ -55,9 +55,9 @@ export default function Dashboard() {
   return (
     <div className=" w-full bg-gray-100 p-2">
       
-      <div className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full">Website Overview</div>
+      <div className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full max-lg:text-xs">Website Overview</div>
 
-      <div className="bg-white p-4 shadow-md rounded-md mt-2 w-full grid grid-cols-4 gap-2">
+      <div className="bg-white p-4 shadow-md rounded-md mt-2 w-full grid grid-cols-4 max-lg:flex max-lg:flex-col gap-2 *:*:max-lg:text-xs">
         <div className="text-center w-full">
           <p className="text-3xl font-bold">203</p>
           <p>Users</p>
@@ -76,9 +76,9 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="bg-white p-4 shadow-md rounded-md mt-2 w-full h-[40%]">
-        <h2 className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full">Instabilidade do Sistema</h2>
-        <div className="w-full h-80"> {/* Define uma altura fixa para o gráfico */}
+      <div className="bg-white p-4 shadow-md rounded-md mt-2 min-w-72 h-[40%]">
+        <h2 className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full max-lg:text-xs">Instabilidade do Sistema</h2>
+        <div className="w-full h-80 min-w-60"> {/* Define uma altura fixa para o gráfico */}
           <Line data={data} options={options} />
         </div>
       </div>
