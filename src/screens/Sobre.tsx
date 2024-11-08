@@ -2,8 +2,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
-
-
 interface Props {
     setScreen: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -12,7 +10,7 @@ export default function Sobre({ setScreen }: Props) {
     return (
         <div className="bg-[#495DF8] h-full ">
             <button
-                className="flex mt-0 px-4 py-2 bg-slate-100 text-black border-black  rounded-lg hover:bg-gray-200 w-[10%] justify-center items-center gap-4 fixed"
+                className="flex top-3 max-lg:top-1 left-3 max-lg:left-1 px-4 py-2 bg-slate-100 text-black border-black  rounded-lg hover:bg-gray-200 justify-center items-center gap-4 fixed text-2xl max-lg:text-sm"
                 onClick={() => setScreen('home')}
             >
                 <IoMdArrowRoundBack />  Voltar
