@@ -7,6 +7,9 @@ interface Props {
 }
 
 export default function Profile({ setDisplayFirstHash }: Props) {
+    const quantPosts = 11
+    const randomIndex = Math.floor(Math.random() * quantPosts)
+
     return (
         <div className="flex flex-col items-center justify-center relative size-full">
             <div className="flex items-center absolute top-2 left-2 max-md:top-0 max-md:left-0">
@@ -17,8 +20,8 @@ export default function Profile({ setDisplayFirstHash }: Props) {
             </div>
 
             <div className='grid grid-cols-3 max-md:grid-cols-2 items-center gap-6 max-lg:gap-3 overflow-scroll h-3/4 max-md:h-2/4 no-scrollbar'>
-                {[...Array(11)].map((_, index) => {
-                    if (index === 3) {
+                {[...Array(quantPosts)].map((_, index) => {
+                    if (index === randomIndex) {
                         return <CrashedOfflineBlock key={index} setDisplayFirstHash={setDisplayFirstHash} />
                     }
 

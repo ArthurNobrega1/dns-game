@@ -40,7 +40,9 @@ export default function Dashboard() {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'top' },
+      legend: {
+        position: 'top' as const
+      },
       title: {
         display: true,
         text: 'Monitoramento de Instabilidade',
@@ -54,7 +56,7 @@ export default function Dashboard() {
 
   return (
     <div className=" w-full bg-gray-100 p-2">
-      
+
       <div className="bg-purple-700 text-white text-center py-4 font-bold text-lg w-full max-lg:text-xs">Website Overview</div>
 
       <div className="bg-white p-4 shadow-md rounded-md mt-2 w-full grid grid-cols-4 max-lg:flex max-lg:flex-col gap-2 *:*:max-lg:text-xs">
