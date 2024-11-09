@@ -1,7 +1,6 @@
 import { HiTerminal } from "react-icons/hi";
 import { BsBrowserChrome } from "react-icons/bs";
-import { showInfoToast } from "../utils/toast";
-import { tipTerminal } from "../utils/tips"
+import { tipSocialMedia, tipTerminal } from "../utils/tips"
 
 interface Props {
     setApp: React.Dispatch<React.SetStateAction<string>>
@@ -10,9 +9,8 @@ interface Props {
 export default function TaskBar({ setApp }: Props) {
     const handlleChangeApp = (context: 'terminal' | 'socialMedia') => {
         setApp(context)
-        if (context === 'terminal'){ showInfoToast('Escreva help para conhecer os comandos'); setTimeout(() => {tipTerminal()},30000)}
-        else if (context === 'socialMedia') showInfoToast('Sabia que o DNS é como o catálogo telefônico da internet? Ele traduz nomes de domínio (como <strong>www.exemplo.com</strong>) em endereços IP que os servidores entendem. Se o DNS falhar, o site pode não ser encontrado! ')
-
+        if (context === 'terminal') { tipTerminal() }
+        else if (context === 'socialMedia') { tipSocialMedia() }
     }
 
     return (

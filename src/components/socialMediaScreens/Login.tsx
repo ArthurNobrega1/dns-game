@@ -1,3 +1,4 @@
+import { tipAdmin, tipLoginInvalidData, tipLoginWithoutData } from "../../utils/tips";
 import Button from "../Button";
 import Input from "../Input";
 import AdminScreen from "./AdiminScreen";
@@ -10,7 +11,7 @@ interface Props {
 
 }
 
-export default function Login({ setContentScreen,setDisplaySecondHash }: Props) {
+export default function Login({ setContentScreen, setDisplaySecondHash }: Props) {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>
     ) => {
@@ -20,8 +21,12 @@ export default function Login({ setContentScreen,setDisplaySecondHash }: Props) 
         const passoword = document.getElementById('password') as HTMLInputElement
 
         if (user.value === 'chefe@redesocial.com' && passoword.value === 'senhaultradificil') {
+            tipAdmin()
             setContentScreen(<AdminScreen setDisplaySecondHash={setDisplaySecondHash} />)
-            
+        } else if (!user.value || !passoword.value) {
+            tipLoginWithoutData()
+        } else {
+            tipLoginInvalidData()
         }
     }
 

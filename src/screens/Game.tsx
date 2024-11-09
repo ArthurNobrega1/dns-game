@@ -1,6 +1,6 @@
 import Computer from "../components/Computer"
 import { useEffect, useState } from "react"
-import { showInfoToast } from "../utils/toast"
+import { tipEndGame, tipHalfGame } from "../utils/tips"
 
 interface Props {
     setScreen: React.Dispatch<React.SetStateAction<string>>
@@ -24,10 +24,12 @@ export default function Game({ setScreen }: Props) {
     const { firstPart, secondPart } = generateRandomIP()
 
     useEffect(() => {
-        if (displayFirstHash === 1 && displaySecondHash === 1) {
-            showInfoToast('Parabéns! Você encontrou o IP de sua rede social e agora pode acessá-la', 3000)
+        if (!(displayFirstHash === 0 && displaySecondHash === 0) && !(displayFirstHash === 1 && displaySecondHash === 1)) {
+            tipHalfGame()
+        }
+        else if (displayFirstHash === 1 && displaySecondHash === 1) {
+            tipEndGame()
             setTimeout(() => {
-                showInfoToast('Jogue novamente...', 3000)
                 setScreen('home')
                 setDisplayFirstHash(0)
                 setDisplaySecondHash(0)

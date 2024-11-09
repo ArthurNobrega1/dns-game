@@ -20,8 +20,6 @@ export default function Monitor({ setDisplayFirstHash, setDisplaySecondHash}: Pr
         <Terminal />
       }
       <TaskBar setApp={setApp} />
-
-
     </div>
   )
 }
