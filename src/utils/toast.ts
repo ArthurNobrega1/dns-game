@@ -9,7 +9,7 @@ export const showInfoToast = (message: string, duration = 4000) => {
             color: '#FFFFFF'
         },
         duration: duration
-    });
+    })
 }
 
 // Toast de alerta
@@ -21,7 +21,7 @@ export const showWarnToast = (message: string, duration = 4000) => {
             color: '#000000'
         },
         duration: duration
-    });
+    })
 }
 
 // Toast de erro
@@ -33,7 +33,7 @@ export const showErrorToast = (message: string, duration = 4000) => {
             color: '#FFFFFF'
         },
         duration: duration
-    });
+    })
 }
 
 // Toast de sucesso
@@ -45,5 +45,18 @@ export const showSuccessToast = (message: string, duration = 4000) => {
             color: '#FFFFFF'
         },
         duration: duration
-    });
+    })
+}
+
+interface ToastMessage {
+    messageFunction: () => void
+    duration?: number
+}
+
+export const showToastsInSequence = (ToastMessages: ToastMessage[]) => {
+    let delay = 0
+    ToastMessages.forEach(({ messageFunction, duration=4000 }) => {
+        setTimeout(() => messageFunction(), delay)
+        delay += duration
+    })
 }

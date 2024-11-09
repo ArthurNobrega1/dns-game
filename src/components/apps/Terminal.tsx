@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { tipTerminalCd, tipTerminalClear, tipTerminalDirb, tipTerminalHelp, tipTerminalIncompleteCommand, tipTerminalLs } from "../../utils/tips"
 
 interface IPaths {
   [x: string]: string[]
@@ -25,12 +26,14 @@ export default function Terminal() {
 
   const handleCommand = (currentInput: HTMLInputElement) => {
     if (currentInput.value === 'clear') {
+      tipTerminalClear()
       const divToRemove = document.getElementById("conteudo") as HTMLDivElement
       divToRemove.innerHTML = ''
       return undefined
     }
 
     else if (currentInput.value === 'ls') {
+      tipTerminalLs()
       const currentPath = pathsTerminal[pathsTerminal.length - 1]
       const filesLs = currentPath.includes('dont-open')
         ? [`realy-${currentPath}`, '..']
@@ -42,7 +45,12 @@ export default function Terminal() {
       return div
     }
 
-    else if (currentInput.value.split(" ")[0] === 'cd') {
+    else if (currentInput.value.split(" ")[0] === 'cd' && !currentInput.value.split(" ")[1]) {
+      tipTerminalIncompleteCommand()
+    }
+
+    else if (currentInput.value.split(" ")[0] === 'cd' && !!currentInput.value.split(" ")[1]) {
+      tipTerminalCd()
       const currentPath = pathsTerminal[pathsTerminal.length - 1]
       const filesCd = currentPath.includes('dont-open')
         ? [`realy-${currentPath}`, '..']
@@ -59,6 +67,7 @@ export default function Terminal() {
     }
 
     else if (currentInput.value === 'help') {
+      tipTerminalHelp()
       const divHelp = document.createElement('div')
       divHelp.className = 'help'
 
@@ -75,7 +84,12 @@ export default function Terminal() {
       return divHelp
     }
 
-    else if (currentInput.value.split(" ")[0] === 'dirb') {
+    else if (currentInput.value.split(" ")[0] === 'dirb' && !currentInput.value.split(" ")[1]) {
+      tipTerminalIncompleteCommand()
+    }
+
+    else if (currentInput.value.split(" ")[0] === 'dirb' && !!currentInput.value.split(" ")[1]) {
+      tipTerminalDirb()
       const url = currentInput.value.split(" ")[1]
       if (Object.keys(paths).includes(url)) {
         const divPaths = document.createElement('div')
@@ -105,7 +119,7 @@ export default function Terminal() {
       const conteudo = document.getElementById('conteudo')
       if (currentInput.value !== 'clear') {
         const oldInput = document.createElement('p')
-        oldInput.textContent = `user@root:/${pathsTerminal[pathsTerminal.length - 1] === 'root' ? '' : pathsTerminal[pathsTerminal.length - 1]}$  ${currentInput.value}`
+        oldInput.innerHTML = `user@root:/${pathsTerminal[pathsTerminal.length - 1] === 'root' ? '' : pathsTerminal[pathsTerminal.length - 1]}$&nbsp; ${currentInput.value}`
         if (conteudo && currentInput.value !== 'clear') {
           conteudo.appendChild(oldInput)
         }
@@ -128,7 +142,7 @@ export default function Terminal() {
         <input
           type="text"
           id='open-input'
-          className='bg-transparent flex-1 pl-3 outline-none'
+          className='bg-transparent flex-1 pl-4 outline-none'
           onBlur={e => e.target.focus()}
           onKeyDown={event => handleSubmit(event)}
           autoFocus={true}

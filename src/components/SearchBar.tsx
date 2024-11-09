@@ -9,7 +9,7 @@ import Erro404 from "./socialMediaScreens/Erro404";
 import LoadingIcon from "./socialMediaScreens/LoadingIcon";
 import Login from "./socialMediaScreens/Login";
 import Chat from "./socialMediaScreens/Chat";
-import { tipChat, tipDNS, tipError404, tipError500, tipHome, tipLogin, tipProfile, tipRobotsTxt } from "../utils/tips";
+import { tipChat, tipError404, tipHomeSocialMedia, tipLogin, tipProfile, tipRobotsTxt } from "../utils/tips";
 
 interface Props {
     setContentScreen: React.Dispatch<React.SetStateAction<JSX.Element>>
@@ -18,7 +18,7 @@ interface Props {
 
 }
 
-export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDisplaySecondHash }: Props) {
+export default function SearchBar({ setContentScreen, setDisplayFirstHash, setDisplaySecondHash }: Props) {
     const url = 'https://www.redesocial.com/'
     const handlleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
@@ -27,13 +27,7 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDis
                 const path = event.target as HTMLInputElement
                 if (path.value === '' || path.value === 'home' || path.value === 'home/') {
                     setContentScreen(<ErroMensagem />)
-                    tipHome()
-                    setTimeout(() =>{
-                       tipError500()
-                    },4300)
-                    setTimeout(() =>{
-                        tipDNS()
-                     },8100)
+                    tipHomeSocialMedia()
                 } else if (path.value === 'robots.txt' || path.value === 'robots.txt/') {
                     setContentScreen(<RobotsTxt />)
                     tipRobotsTxt()
@@ -41,7 +35,7 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDis
                     setContentScreen(<Profile setDisplayFirstHash={setDisplayFirstHash} />)
                     tipProfile()
                 } else if (path.value === 'admin' || path.value === 'admin/') {
-                    setContentScreen(<Login setContentScreen={setContentScreen } setDisplaySecondHash={setDisplaySecondHash} />)
+                    setContentScreen(<Login setContentScreen={setContentScreen} setDisplaySecondHash={setDisplaySecondHash} />)
                     tipLogin()
                 } else if (path.value === 'chat/23781829' || path.value === 'chat/23781829/') {
                     setContentScreen(<Chat />)
@@ -85,6 +79,7 @@ export default function SearchBar({ setContentScreen, setDisplayFirstHash,setDis
                 <div className="flex w-full h-6/6 items-center bg-[#202020] rounded-3xl px-3 border-2 border-transparent hover:bg-[#262626] focus-within:border-blue-500">
                     <p className="text-stone-400 mr-1">{url}</p>
                     <input
+                        id="search"
                         type="text"
                         className="flex-1 bg-transparent outline-none text-stone-400"
                         onKeyDown={handlleSubmit}
