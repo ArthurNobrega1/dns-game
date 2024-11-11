@@ -144,9 +144,7 @@ export default function Terminal() {
           type="text"
           id='open-input'
           className='bg-transparent flex-1 pl-4 outline-none'
-          onBlur={e => e.target.focus()}
           onKeyDown={event => handleSubmit(event)}
-          autoFocus={true}
           onChange={e => setInput(e.target.value)}
           value={input}
         />
