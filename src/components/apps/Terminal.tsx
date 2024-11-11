@@ -6,15 +6,16 @@ interface IPaths {
 }
 
 const paths: IPaths = {
-  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home', 'chat/23781829']
+  'https://www.redesocial.com/': ['robots.txt', 'profile', 'home', 'chat/23781829'],
+  'https://www.redesocial.com': ['robots.txt', 'profile', 'home', 'chat/23781829'],
 }
 
 const commands = {
   help: 'Lista todos os comandos [Ex: help]',
   clear: 'Limpa o terminal [Ex: clear]',
-  dirb: 'Mapeia diretórios de uma url [Ex: dirb https://site.com/]',
-  ls: 'Lista de diretorios [Ex: ls]',
-  cd: 'Navegar por diretorios [Ex: cd pasta]'
+  dirb: 'Mapeia diretórios de uma URL [Ex: dirb https://site.com/]',
+  ls: 'Lista pastas da SUA MÁQUINA [Ex: ls]',
+  cd: 'Navegar por pastas da SUA MÁQUINA [Ex: cd pasta]'
 }
 const fileSystem: { [key: string]: string[] } = {
   'root': ['dont-open']
