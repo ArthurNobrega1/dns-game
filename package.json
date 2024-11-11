@@ -11,13 +11,15 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@types/webfontloader": "^1.6.38",
     "chart.js": "^4.4.6",
     "npm": "^10.9.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^5.3.0"
+    "react-icons": "^5.3.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
