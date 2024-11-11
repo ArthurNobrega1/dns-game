@@ -107,12 +107,13 @@ export const tipInitial = async () => {
         (onConfirm: () => void) => { showInfoToast('E, mesmo que de forma estranha, poderíamos nos chamar pelo CPF ou pelo RG na rua, pois nos identificamos também a partir disso', onConfirm) },
         (onConfirm: () => void) => { showInfoToast('Comparado com a gente, há também outras formas de identificar um site, no caso, podemos chamá-lo pelo IP', onConfirm) },
         (onConfirm: () => void) => { showInfoToast('Logo, o DNS é basicamente um serviço que nomeia CPFs de computadores para que a gente não precise decorar todo o IP do Google para ter que pesquisar algo nele', onConfirm) },
-        (onConfirm: () => void) => { showInfoToast('Toda sua aventura aqui se baseia nisso: tentar burlar esse erro e acessar o site de outra forma, ou seja, pelo IP', onConfirm) },
+        (onConfirm: () => void) => { showInfoToast('Toda sua aventura aqui se baseia nisso: Já que eles bloqueram você de chamar o site pelo nome (hostname), você vai tentar chamar ele pelo cpf (ip), apostando em eles não terem bloqueado também', onConfirm) },
         async (onConfirm: () => void) => {
             await tipHomeSocialMedia()
             onConfirm()
         },
         (onConfirm: () => void) => { showInfoToast('Geralmente é um sinal de que algo está errado no servidor desse site nessa página que você está', onConfirm) },
+        (onConfirm: () => void) => { showInfoToast('Procure mais informações nos icone abaixo (terminal)', onConfirm) }
     ])
 }
 
