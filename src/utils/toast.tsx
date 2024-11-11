@@ -1,27 +1,35 @@
-import toast, { Toast } from "react-hot-toast";
+import toast, { Toast } from "react-hot-toast"
 
-// Funções de toasts com diferentes estilos e ícones
 export const showInfoToast = (message: string, onConfirm: () => void): void => {
     toast((t: Toast) => (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span>{message}</span>
             <button
                 onClick={() => {
-                    toast.dismiss(t.id);
-                    onConfirm(); // Chama a função de confirmação
+                    toast.dismiss(t.id)
+                    onConfirm()
                 }}
                 style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
             >
                 Confirmar
             </button>
+            <button
+                onClick={() => {
+                    toast.dismiss(t.id)
+                    skipToasts()
+                }}
+                style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
+            >
+                Pular
+            </button>
         </div>
     ), {
         icon: 'ℹ️',
         style: {
-            background: '#1E40AF', // Azul
+            background: '#1E40AF',
             color: '#FFFFFF'
         },
-        duration: Infinity // Duração infinita até o usuário confirmar
+        duration: Infinity
     })
 }
 
@@ -31,18 +39,27 @@ export const showWarnToast = (message: string, onConfirm: () => void): void => {
             <span>{message}</span>
             <button
                 onClick={() => {
-                    toast.dismiss(t.id);
-                    onConfirm(); // Chama a função de confirmação
+                    toast.dismiss(t.id)
+                    onConfirm()
                 }}
                 style={{ marginLeft: '10px', background: 'transparent', color: 'black', border: 'none', cursor: 'pointer' }}
             >
                 Confirmar
             </button>
+            <button
+                onClick={() => {
+                    toast.dismiss(t.id)
+                    skipToasts()
+                }}
+                style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
+            >
+                Pular
+            </button>
         </div>
     ), {
         icon: '⚠️',
         style: {
-            background: '#F59E0B', // Amarelo
+            background: '#F59E0B',
             color: '#000000'
         },
         duration: Infinity
@@ -55,18 +72,27 @@ export const showErrorToast = (message: string, onConfirm: () => void): void => 
             <span>{message}</span>
             <button
                 onClick={() => {
-                    toast.dismiss(t.id);
-                    onConfirm(); // Chama a função de confirmação
+                    toast.dismiss(t.id)
+                    onConfirm()
                 }}
                 style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
             >
                 Confirmar
             </button>
+            <button
+                onClick={() => {
+                    toast.dismiss(t.id)
+                    skipToasts()
+                }}
+                style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
+            >
+                Pular
+            </button>
         </div>
     ), {
         icon: '❌',
         style: {
-            background: '#DC2626', // Vermelho
+            background: '#DC2626',
             color: '#FFFFFF'
         },
         duration: Infinity
@@ -79,29 +105,39 @@ export const showSuccessToast = (message: string, onConfirm: () => void): void =
             <span>{message}</span>
             <button
                 onClick={() => {
-                    toast.dismiss(t.id);
-                    onConfirm(); // Chama a função de confirmação
+                    toast.dismiss(t.id)
+                    onConfirm()
                 }}
                 style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
             >
                 Confirmar
             </button>
+            <button
+                onClick={() => {
+                    toast.dismiss(t.id)
+                    skipToasts()
+                }}
+                style={{ marginLeft: '10px', background: 'transparent', color: 'white', border: 'none', cursor: 'pointer' }}
+            >
+                Pular
+            </button>
         </div>
     ), {
         icon: '✅',
         style: {
-            background: '#10B981', // Verde
+            background: '#10B981',
             color: '#FFFFFF'
         },
         duration: Infinity
     })
 }
 
-// Função para exibir toasts em sequência
 export const showToastInSequence = async (toastFunctions: ((onConfirm: () => void) => void)[]) => {
     for (let i = 0; i < toastFunctions.length; i++) {
         await new Promise<void>((resolve) => {
-            toastFunctions[i](resolve); // Passa a função resolve para chamar quando o toast for confirmado
+            toastFunctions[i](resolve)
         })
     }
 }
+
+const skipToasts = () => toast.dismiss()
